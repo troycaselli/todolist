@@ -1,14 +1,14 @@
 import {Input} from './Styled';
 
 export default function ToDoAdd(props) {
-    const {toDoList, typeNewTodo, addTodo, newTodo} = props;
+    const {handleNewTodo, addTodo, newTodo} = props;
 
     return (
         <Input
             type='text'
             value={newTodo}
             placeholder='new ToDo'
-            onChange={typeNewTodo}
+            onChange={evt => handleNewTodo(evt.target.value)}
             onKeyDown={addTodo}>
         </Input>
     );

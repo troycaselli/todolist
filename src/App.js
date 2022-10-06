@@ -1,20 +1,18 @@
 import './App.css';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import ToDoList from './components/ToDoList';
 import ToDoAdd from './components/ToDoAdd';
 import {Container, Header} from './components/Styled';
+import useInput from './components/useInput';
 
 
 function App() {
 const [toDoList, setTodoList] = useState([{id: 1, description: 'Make a todo list!', isDone: false}]);
-const [newTodo, setNewTodo] = useState('');
+// const [newTodo, setNewTodo] = useState('');
+const [newTodo, setNewTodo, handleNewTodo] = useInput('');
 
 const markOff = id => {
   setTodoList(toDoList.filter(todo => todo.id !== id));
-}
-
-const typeNewTodo = event => {
-  setNewTodo(event.target.value);
 }
 
 const addTodo = event => {
@@ -28,7 +26,7 @@ const addTodo = event => {
   return (
     <Container>
       <Header>ToDo List:</Header>
-      <ToDoAdd toDoList={toDoList} typeNewTodo={typeNewTodo} addTodo={addTodo} newTodo={newTodo}/>
+      <ToDoAdd toDoList={toDoList} handleNewTodo={handleNewTodo} addTodo={addTodo} newTodo={newTodo}/>
       <ToDoList toDoList={toDoList} markOff={markOff}/>
     </Container>
   );
